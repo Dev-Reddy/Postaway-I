@@ -1,5 +1,8 @@
 import winston from "winston";
 
+// create a logger instance
+// it will log - level, message, timestamp, reqUrl
+
 const logger = winston.createLogger({
   level: "info",
   defaultMeta: { service: "request-logging" },
@@ -19,6 +22,8 @@ const logger = winston.createLogger({
     }),
   ],
 });
+
+// create a middleware function
 
 const loggerMiddleware = async (req, res, next) => {
   // log the request

@@ -7,6 +7,7 @@ export default class LikeModel {
     this.status = true;
   }
 
+  // get all likes for a post
   static getLikesForPost(postId) {
     const postLikes = likes.filter(
       (like) => like.postId === Number(postId) && like.status
@@ -19,6 +20,7 @@ export default class LikeModel {
     return postLikes;
   }
 
+  // toggle like for a post i.e. like if not liked by user, unlike if already liked
   static toggleLike(userId, postId) {
     const like = likes.find(
       (like) => like.userId === Number(userId) && like.postId === Number(postId)

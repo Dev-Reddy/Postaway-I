@@ -36,7 +36,7 @@ export default class PostController {
         const paginatedPosts = sortedPosts.slice(startIndex, endIndex);
         res.status(200).json({
           posts: paginatedPosts,
-          message: `Posts sorted in ${sort} order and returning with ${pageNo}`,
+          message: `Posts sorted in ${sort} order and returning with page no: ${pageNo}`,
         });
       } else if (sort) {
         const sortedPosts = sortPosts(posts, sort);
@@ -50,7 +50,7 @@ export default class PostController {
         const paginatedPosts = posts.slice(startIndex, endIndex);
         res.status(200).json({
           posts: paginatedPosts,
-          message: `Returning posts with ${pageNo}`,
+          message: `Returning posts with page no: ${pageNo}`,
         });
       } else {
         res.status(200).json({ posts, message: "All posts" });
@@ -60,6 +60,7 @@ export default class PostController {
     }
   }
 
+  // Filter posts based on search query
   static filterPosts(req, res, next) {
     try {
       const { search, sort, pageNo } = req.query;
@@ -71,7 +72,7 @@ export default class PostController {
         const paginatedPosts = sortedPosts.slice(startIndex, endIndex);
         res.status(200).json({
           posts: paginatedPosts,
-          message: `Filtered posts sorted in ${sort} order and returning with ${pageNo}`,
+          message: `Filtered posts sorted in ${sort} order and returning with page no: ${pageNo}`,
         });
       } else if (sort) {
         const sortedPosts = sortPosts(posts, sort);
@@ -85,7 +86,7 @@ export default class PostController {
         const paginatedPosts = posts.slice(startIndex, endIndex);
         res.status(200).json({
           posts: paginatedPosts,
-          message: `Filtered posts returning with ${pageNo}`,
+          message: `Filtered posts returning with page no: ${pageNo}`,
         });
       } else {
         res.status(200).json({ posts, message: "Filtered posts" });
@@ -190,6 +191,7 @@ export default class PostController {
     }
   }
 
+  // bookmark post for the user
   static bookmarkPostToggle(req, res, next) {
     try {
       console.log("Bookmark pos");
@@ -204,6 +206,7 @@ export default class PostController {
     }
   }
 
+  // get posts bookmarked by the user
   static getBookmarkedPosts(req, res, next) {
     try {
       const userId = req.userId;

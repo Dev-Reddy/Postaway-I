@@ -1,6 +1,8 @@
+// import LikeModel
 import LikeModel from "./like.model.js";
 
 export default class LikeController {
+  // get all likes for a post
   static getLikesForPost(req, res, next) {
     try {
       const { postId } = req.params;
@@ -17,6 +19,7 @@ export default class LikeController {
     }
   }
 
+  // toggle like for a post i.e. like if not liked by user, unlike if already liked
   static toggleLike(req, res, next) {
     try {
       const { postId } = req.params;

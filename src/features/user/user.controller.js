@@ -2,6 +2,7 @@ import UserModel from "./user.model.js";
 import jwt from "jsonwebtoken";
 
 export default class UserController {
+  // Sign up a new user
   static signUp(req, res, next) {
     try {
       const { name, email, password } = req.body;
@@ -20,7 +21,7 @@ export default class UserController {
       next(error);
     }
   }
-
+  // Sign in a user
   static signIn(req, res, next) {
     try {
       const { email, password } = req.body;

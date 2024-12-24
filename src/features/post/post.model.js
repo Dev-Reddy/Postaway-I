@@ -14,6 +14,7 @@ export default class PostModel {
     this.bookmarks = [];
   }
 
+  // get all posts
   static getAll() {
     const allPosts = posts.filter((post) => post.status === "posted");
     if (!allPosts || allPosts.length === 0) {
@@ -22,6 +23,7 @@ export default class PostModel {
     return allPosts;
   }
 
+  // filter posts by caption
   static filterPosts(caption) {
     console.log("filterPosts");
     const filteredPosts = posts.filter(
@@ -35,6 +37,7 @@ export default class PostModel {
     return filteredPosts;
   }
 
+  // get post by id
   static getById(id) {
     const post = posts.find((post) => post.id === Number(id));
     if (!post) {
@@ -42,6 +45,8 @@ export default class PostModel {
     }
     return post;
   }
+
+  // get posts by user
 
   static getByUserId(userId) {
     const userPosts = posts.filter((post) => post.userId === Number(userId));
@@ -53,6 +58,7 @@ export default class PostModel {
     return userPosts;
   }
 
+  // create new post
   static createPost(userId, caption, imageUrl) {
     const post = new PostModel(
       userId,
@@ -65,6 +71,7 @@ export default class PostModel {
     return post;
   }
 
+  // save new post as draft
   static saveAsDraft(userId, caption, imageUrl) {
     const post = new PostModel(
       userId,
@@ -78,6 +85,7 @@ export default class PostModel {
     return post;
   }
 
+  // update post
   static updatePost(id, caption, imageUrl, userId) {
     const post = posts.find((post) => post.id === Number(id));
     if (!post) {
@@ -96,6 +104,7 @@ export default class PostModel {
     return post;
   }
 
+  // delete post
   static deletePost(id, userId) {
     const index = posts.findIndex((post) => post.id === Number(id));
     if (index === -1) {
@@ -119,6 +128,7 @@ export default class PostModel {
   //     return post;
   //   }
 
+  // archive existing post
   static archivePost(id, userId) {
     console.log("archivePost");
     console.log("id", id);
@@ -138,6 +148,7 @@ export default class PostModel {
     return post;
   }
 
+  // update the number of likes for a post
   static updatePostLikes(id, like) {
     console.log("updatePostLikes");
     const post = posts.find((post) => post.id === Number(id));
@@ -153,6 +164,7 @@ export default class PostModel {
     }
   }
 
+  // get the number of likes for a post
   static getPostLikes(id) {
     const post = posts.find((post) => post.id === Number(id));
     if (!post) {
@@ -161,6 +173,7 @@ export default class PostModel {
     return post.likes;
   }
 
+  // update the number of comments for a post
   static updatePostComments(id, comment) {
     const post = posts.find((post) => post.id === Number(id));
     if (!post) {
@@ -173,6 +186,7 @@ export default class PostModel {
     }
   }
 
+  // get the number of comments for a post
   static getPostComments(id) {
     const post = posts.find((post) => post.id === Number(id));
     if (!post) {
@@ -181,6 +195,7 @@ export default class PostModel {
     return post.comments;
   }
 
+  // toggle bookmark for a post
   static bookmarkPostToggle(id, userId) {
     const post = posts.find((post) => post.id === Number(id));
     if (!post) {
@@ -197,6 +212,7 @@ export default class PostModel {
     return post;
   }
 
+  // get all posts bookmarked by a user
   static getBookmarkedPosts(userId) {
     const bookmarkedPosts = posts.filter((post) => {
       if (!post.bookmarks) {

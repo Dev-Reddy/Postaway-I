@@ -15,7 +15,9 @@ export default function jwtAuth(req, res, next) {
     req.userId = payload.userId;
     // console.log("Payload: ", payload);
   } catch (error) {
+    // Check if token is expired
     if (error.name === "TokenExpiredError") {
+      // if token is expired then inform user
       return res.status(401).json({ message: "Unauthorized. Token expired" });
     }
     return res.status(401).json({ message: "Unauthorized. Invalid token" });

@@ -1132,11 +1132,20 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Comments retrieved successfully if any.",
+            "description": "Comments retrieved successfully if any. If page number is not provided, all comments are retrieved.",
             "content": {
               "application/json": {
                 "schema": {

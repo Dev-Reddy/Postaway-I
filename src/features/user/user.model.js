@@ -7,6 +7,7 @@ export default class UserModel {
     this.email = email;
     this.password = password;
   }
+
   //  signup method
   static signUp(name, email, password) {
     const user = new UserModel(name, email, password, users.length + 1);

@@ -1,6 +1,7 @@
 import ApplicationError from "../../error/applicationError.js";
 import PostModel from "../post/post.model.js";
 
+// CommentModel class
 export default class CommentModel {
   constructor(userId, postId, content, id) {
     this.id = Number(id);
@@ -9,6 +10,7 @@ export default class CommentModel {
     this.content = content;
   }
 
+  // get all comments for a post
   static getCommentByPostId(postId) {
     const postComments = comments.filter(
       (comment) => comment.postId === Number(postId)
@@ -20,6 +22,7 @@ export default class CommentModel {
     return postComments;
   }
 
+  // post a comment for a post
   static postComment(userId, postId, content) {
     const newComment = new CommentModel(
       userId,
@@ -32,6 +35,7 @@ export default class CommentModel {
     return newComment;
   }
 
+  // update a comment
   static updateComment(commentId, userId, content) {
     const commentIndex = comments.findIndex(
       (comment) => comment.id === Number(commentId)
@@ -51,6 +55,8 @@ export default class CommentModel {
     comments[commentIndex].content = content;
     return comments[commentIndex];
   }
+
+  // delete a comment
 
   static deleteComment(commentId, userId) {
     const commentIndex = comments.findIndex(
