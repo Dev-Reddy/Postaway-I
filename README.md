@@ -108,7 +108,7 @@ To start the server:
    - Added the ability to bookmark posts for later viewing.
 
 5. **Pagination** - Done
-   - Implemented pagination for posts.
+   - Implemented pagination for posts and comments.
 
 ---
 
