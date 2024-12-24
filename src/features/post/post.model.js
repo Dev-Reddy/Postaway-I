@@ -9,9 +9,9 @@ export default class PostModel {
     this.status = status;
     this.createdAt = new Date();
     this.updatedAt = new Date();
-
     this.likes = 0;
     this.comments = 0;
+    this.bookmarks = [];
   }
 
   static getAll() {
@@ -179,6 +179,35 @@ export default class PostModel {
       throw new ApplicationError("Post not found", 404);
     }
     return post.comments;
+  }
+
+  static bookmarkPostToggle(id, userId) {
+    const post = posts.find((post) => post.id === Number(id));
+    if (!post) {
+      throw new ApplicationError("Post not found", 404);
+    }
+    if (!post.bookmarks) {
+      post.bookmarks = [];
+    }
+    if (post.bookmarks.includes(userId)) {
+      post.bookmarks = post.bookmarks.filter((bookmark) => bookmark !== userId);
+    } else {
+      post.bookmarks.push(userId);
+    }
+    return post;
+  }
+
+  static getBookmarkedPosts(userId) {
+    const bookmarkedPosts = posts.filter((post) => {
+      if (!post.bookmarks) {
+        post.bookmarks = [];
+      }
+      return post.bookmarks.includes(userId);
+    });
+    if (!bookmarkedPosts || bookmarkedPosts.length === 0) {
+      throw new ApplicationError("No bookmarked posts found", 404);
+    }
+    return bookmarkedPosts;
   }
 }
 

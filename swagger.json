@@ -194,6 +194,17 @@
                           },
                           "comments": {
                             "type": "integer"
+                          },
+                          "bookmarks": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "userId": {
+                                  "type": "integer"
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -277,6 +288,17 @@
                         },
                         "comments": {
                           "type": "integer"
+                        },
+                        "bookmarks": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "userId": {
+                                "type": "integer"
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -349,6 +371,17 @@
                         },
                         "comments": {
                           "type": "integer"
+                        },
+                        "bookmarks": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "userId": {
+                                "type": "integer"
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -442,6 +475,17 @@
                         },
                         "comments": {
                           "type": "integer"
+                        },
+                        "bookmarks": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "userId": {
+                                "type": "integer"
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -573,6 +617,17 @@
                           },
                           "comments": {
                             "type": "integer"
+                          },
+                          "bookmarks": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "userId": {
+                                  "type": "integer"
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -651,6 +706,17 @@
                           },
                           "comments": {
                             "type": "integer"
+                          },
+                          "bookmarks": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "userId": {
+                                  "type": "integer"
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -662,6 +728,170 @@
           },
           "404": {
             "description": "No posts found for this user."
+          }
+        }
+      }
+    },
+    "/api/post/user/bookmark/{postId}": {
+      "post": {
+        "tags": ["Post"],
+        "summary": "Bookmark a post",
+        "description": "The user can toggle bookmark of a post by providing the post ID.",
+        "security": [
+          {
+            "JWT": {}
+          }
+        ],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "description": "Post ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post bookmark toggled successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "post": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "userId": {
+                          "type": "integer"
+                        },
+                        "caption": {
+                          "type": "string"
+                        },
+                        "imageUrl": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "likes": {
+                          "type": "integer"
+                        },
+                        "comments": {
+                          "type": "integer"
+                        },
+                        "bookmarks": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "userId": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post not found."
+          }
+        }
+      }
+    },
+    "/api/post/user/bookmark": {
+      "get": {
+        "tags": ["Post"],
+        "summary": "Get bookmarked posts",
+        "description": "The user can retrieve bookmarked posts.",
+        "security": [
+          {
+            "JWT": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bookmarked posts retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "posts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "userId": {
+                            "type": "integer"
+                          },
+                          "caption": {
+                            "type": "string"
+                          },
+                          "imageUrl": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          },
+                          "likes": {
+                            "type": "integer"
+                          },
+                          "comments": {
+                            "type": "integer"
+                          },
+                          "bookmarks": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "userId": {
+                                  "type": "integer"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No bookmarked posts found."
           }
         }
       }
@@ -736,6 +966,17 @@
                         },
                         "comments": {
                           "type": "integer"
+                        },
+                        "bookmarks": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "userId": {
+                                "type": "integer"
+                              }
+                            }
+                          }
                         }
                       }
                     }

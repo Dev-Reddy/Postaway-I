@@ -189,4 +189,28 @@ export default class PostController {
       next(error);
     }
   }
+
+  static bookmarkPostToggle(req, res, next) {
+    try {
+      console.log("Bookmark pos");
+      const userId = req.userId;
+      const postId = req.params.postId;
+      console.log("userId", userId);
+      console.log("postId", postId);
+      const post = PostModel.bookmarkPostToggle(postId, userId);
+      res.status(200).send({ post, message: "Post bookmark toggled" });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static getBookmarkedPosts(req, res, next) {
+    try {
+      const userId = req.userId;
+      const posts = PostModel.getBookmarkedPosts(userId);
+      res.status(200).send({ posts, message: "Bookmarked posts for the user" });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
